@@ -47,9 +47,13 @@ public class GetUserTest extends RegresinAPIBase{
     @Test
     public void createUser(){
 
-        String userPayload = CreateUserPayload.userPayload("Adriana","Desarrollador QA");
+        String name="Adriana Mora"; 
+        String job= "Desarrollador QA";
+
+        String userPayload = CreateUserPayload.userPayload(name,job);
         
         GetUserQuestions.validateStatusCode(GetUsersRequest.postUsers(requestSpecification,userPayload), 201);
+        GetUserQuestions.validateResponsePost(GetUsersRequest.postUsers(requestSpecification,userPayload), name, "name");
 
     }
 

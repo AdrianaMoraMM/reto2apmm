@@ -19,5 +19,11 @@ public class GetUserQuestions {
         assertEquals(number,response.jsonPath().getInt(page),"Expected page  '" + number + "' not found in response." );
     
     }
+
+    public static void validateResponsePost(Response response, String nameresponse,String name){
+
+        assertEquals(nameresponse,response.jsonPath().getString(name),"Expected name '" + nameresponse + "' not found in response." );
+    
+    }
     
 }
