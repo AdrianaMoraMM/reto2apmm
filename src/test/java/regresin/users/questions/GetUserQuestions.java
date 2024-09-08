@@ -16,7 +16,6 @@ public class GetUserQuestions {
 
     public static void validateResponse(Response response, int number,String page){
 
-
         assertEquals(number,response.jsonPath().getInt(page),"Expected page  '" + number + "' not found in response." );
     
     }
