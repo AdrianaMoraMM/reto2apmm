@@ -18,8 +18,8 @@ public class GetUserTest extends RegresinAPIBase{
         String complement ="";
 
         
-        GetUserQuestions.validateStatusCode(GetUsersRequest.getUsers(requestSpecification,complement, String.valueOf(expectedPage)), 200);
-        GetUserQuestions.validateResponse(GetUsersRequest.getUsers(requestSpecification,complement, String.valueOf(expectedPage)), expectedPage,page);
+        GetUserQuestions.validateStatusCode(GetUsersRequest.getUsers(requestSpecification,complement, String.valueOf(expectedPage),page), 200);
+        GetUserQuestions.validateResponse(GetUsersRequest.getUsers(requestSpecification,complement, String.valueOf(expectedPage),page), expectedPage,page);
 
     }
 
@@ -28,8 +28,8 @@ public class GetUserTest extends RegresinAPIBase{
 
         int expectedId =12;
         
-        GetUserQuestions.validateStatusCode(GetUsersRequest.getUsers(requestSpecification,String.valueOf(expectedId),""), 200);
-        GetUserQuestions.validateResponse(GetUsersRequest.getUsers(requestSpecification,String.valueOf(expectedId),""), 12,"data.id");
+        GetUserQuestions.validateStatusCode(GetUsersRequest.getUsers(requestSpecification,String.valueOf(expectedId),"",""), 200);
+        GetUserQuestions.validateResponse(GetUsersRequest.getUsers(requestSpecification,String.valueOf(expectedId),"",""), 12,"data.id");
 
     }
 
@@ -39,7 +39,7 @@ public class GetUserTest extends RegresinAPIBase{
 
         int expectedId =30;
         
-        GetUserQuestions.validateStatusCode(GetUsersRequest.getUsers(requestSpecification,String.valueOf(expectedId),""), 404);
+        GetUserQuestions.validateStatusCode(GetUsersRequest.getUsers(requestSpecification,String.valueOf(expectedId),"",""), 404);
 
     }
 
@@ -54,12 +54,24 @@ public class GetUserTest extends RegresinAPIBase{
         
         GetUserQuestions.validateStatusCode(GetUsersRequest.postUsers(requestSpecification,userPayload), 201);
         GetUserQuestions.validateResponsePost(GetUsersRequest.postUsers(requestSpecification,userPayload), name, "name");
+        GetUserQuestions.validateResponsePost(GetUsersRequest.postUsers(requestSpecification,userPayload), job, "job");
 
     }
 
 
 
-    
+    @Test
+    public void delayResponse(){
+
+        int expectedDelay =3;
+        String delay ="delay";
+        String complement ="";
+
+        
+        GetUserQuestions.validateStatusCode(GetUsersRequest.getUsers(requestSpecification,complement, String.valueOf(expectedDelay),delay), 200);
+        //GetUserQuestions.validateResponse(GetUsersRequest.getUsers(requestSpecification,complement, String.valueOf(expectedPage)), expectedPage,page);
+
+    }
 }
 
 
