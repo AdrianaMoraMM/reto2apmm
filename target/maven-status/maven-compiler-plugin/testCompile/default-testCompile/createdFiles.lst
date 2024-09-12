@@ -1,0 +1,6 @@
+regresin\users\requests\GetUsersRequest.class
+regresin\users\payload\CreateUserPayload.class
+regresin\utils\IConfigBase.class
+regresin\general\RegresinAPIBase.class
+regresin\users\questions\GetUserQuestions.class
+regresin\users\tests\GetUserTest.class
