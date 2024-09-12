@@ -6,10 +6,10 @@ import io.restassured.specification.RequestSpecification;
 
 public class GetUsersRequest {
 
-     public static Response getUsers(RequestSpecification requestSpecification, String complement,String paramPage,String param){
+     public static Response getUsers(RequestSpecification requestSpecification, String path,String paramValue,String param){
 
-        requestSpecification.param(param,paramPage);
-        return requestSpecification.get("/api/users/"+ complement);
+        requestSpecification.param(param,paramValue);
+        return requestSpecification.get("/api/users/"+ path);
     
 }
 

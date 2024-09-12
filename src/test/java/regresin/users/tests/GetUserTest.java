@@ -13,33 +13,87 @@ public class GetUserTest extends RegresinAPIBase{
     @Test
     public void listUser(){
 
-        int expectedPage =2;
-        String page ="page";
-        String complement ="";
+        //Datos para la creación del Api
 
-        
-        GetUserQuestions.validateStatusCode(GetUsersRequest.getUsers(requestSpecification,complement, String.valueOf(expectedPage),page), 200);
-        GetUserQuestions.validateResponse(GetUsersRequest.getUsers(requestSpecification,complement, String.valueOf(expectedPage),page), expectedPage,page);
+        String path ="";//Path
+        String param ="page"; // Parametro
+        Integer paramValue =2; //Complemento del parametro
+
+        GetUserQuestions.validateStatusCode(GetUsersRequest.getUsers(requestSpecification
+                                                                    ,path
+                                                                    ,String.valueOf(paramValue)
+                                                                    ,param)
+                                                                    , 200);
+        GetUserQuestions.validateResponse(GetUsersRequest.getUsers(requestSpecification
+                                                                  ,path
+                                                                  , String.valueOf(paramValue)
+                                                                  ,param)
+                                                                  , paramValue
+                                                                  ,param);
+        GetUserQuestions.validateJsonSchema(GetUsersRequest.getUsers(requestSpecification
+                                                                    ,path
+                                                                    , String.valueOf(paramValue)
+                                                                    ,param)
+                                                                    ,path
+                                                                    ,param
+                                                                    ,paramValue);
 
     }
 
     @Test
     public void userId(){
 
-        int expectedId =12;
-        
-        GetUserQuestions.validateStatusCode(GetUsersRequest.getUsers(requestSpecification,String.valueOf(expectedId),"",""), 200);
-        GetUserQuestions.validateResponse(GetUsersRequest.getUsers(requestSpecification,String.valueOf(expectedId),"",""), 12,"data.id");
+        //Datos para la creación del Api
 
+        String path ="12";//Path
+        String param =""; // Parametro
+        Integer paramValue =null;//Complemento del parametro
+        Integer id=12;//Id del usuario
+
+        
+        GetUserQuestions.validateStatusCode(GetUsersRequest.getUsers(requestSpecification
+                                                                    ,String.valueOf(path)
+                                                                    ,param
+                                                                    ,param)
+                                                                    , 200);
+        GetUserQuestions.validateResponse(GetUsersRequest.getUsers(requestSpecification
+                                                                    ,String.valueOf(path)
+                                                                    ,param,param)
+                                                                    , id
+                                                                    ,"data.id");
+        GetUserQuestions.validateJsonSchema(GetUsersRequest.getUsers(requestSpecification, String.valueOf(path)
+                                                                    ,param
+                                                                    ,param)
+                                                                    ,path
+                                                                    ,param
+                                                                    ,paramValue);
     }
 
 
     @Test
     public void userIdNotExist(){
 
-        int expectedId =30;
+
+        //Datos para la creación del Api
         
-        GetUserQuestions.validateStatusCode(GetUsersRequest.getUsers(requestSpecification,String.valueOf(expectedId),"",""), 404);
+        String path ="30";//Path
+        String param =""; // Parametro
+        Integer id=30;//Id del usuario
+
+      
+        
+        GetUserQuestions.validateStatusCode(GetUsersRequest.getUsers(requestSpecification
+                                                                    ,String.valueOf(path)
+                                                                    ,param
+                                                                    ,param)
+                                                                    , 404);
+        GetUserQuestions.validateJsonSchema(GetUsersRequest.getUsers(requestSpecification
+                                                                    , String.valueOf(path)
+                                                                    ,param
+                                                                    ,param)
+                                                                    ,"error"
+                                                                    ,param
+                                                                    ,id);
 
     }
 
@@ -47,14 +101,27 @@ public class GetUserTest extends RegresinAPIBase{
     @Test
     public void createUser(){
 
-        String name="Adriana Mora"; 
-        String job= "Desarrollador QA";
+        String name="Adriana Mora"; //Nombre Usuario
+        String job= "Desarrollador QA";//Trabajo Usuario
 
-        String userPayload = CreateUserPayload.userPayload(name,job);
+        String userPayload = CreateUserPayload.userPayload(name,job); //Creación del user Payload
         
-        GetUserQuestions.validateStatusCode(GetUsersRequest.postUsers(requestSpecification,userPayload), 201);
-        GetUserQuestions.validateResponsePost(GetUsersRequest.postUsers(requestSpecification,userPayload), name, "name");
-        GetUserQuestions.validateResponsePost(GetUsersRequest.postUsers(requestSpecification,userPayload), job, "job");
+        GetUserQuestions.validateStatusCode(GetUsersRequest.postUsers(requestSpecification
+                                                                        ,userPayload)
+                                                                        , 201);
+        GetUserQuestions.validateResponsePost(GetUsersRequest.postUsers(requestSpecification
+                                                                        ,userPayload)
+                                                                        , name
+                                                                        , "name");
+        GetUserQuestions.validateResponsePost(GetUsersRequest.postUsers(requestSpecification
+                                                                        ,userPayload)
+                                                                        , job
+                                                                        , "job");
+        GetUserQuestions.validateJsonSchema(GetUsersRequest.postUsers(requestSpecification
+                                                                      ,userPayload)
+                                                                      ,"Post"
+                                                                      ,"Createuser"
+                                                                      ,null);
 
     }
 
@@ -63,13 +130,24 @@ public class GetUserTest extends RegresinAPIBase{
     @Test
     public void delayResponse(){
 
-        int expectedDelay =3;
-        String delay ="delay";
-        String complement ="";
+        String path ="";
+        String param ="delay";
+        Integer paramValue =3;
 
         
-        GetUserQuestions.validateStatusCode(GetUsersRequest.getUsers(requestSpecification,complement, String.valueOf(expectedDelay),delay), 200);
-        //GetUserQuestions.validateResponse(GetUsersRequest.getUsers(requestSpecification,complement, String.valueOf(expectedPage)), expectedPage,page);
+        GetUserQuestions.validateStatusCode(GetUsersRequest.getUsers(requestSpecification
+                                                                    ,path
+                                                                    ,String.valueOf(paramValue)
+                                                                    ,param)
+                                                                    , 200);
+        GetUserQuestions.validateJsonSchema(GetUsersRequest.getUsers(requestSpecification
+                                                                    ,path
+                                                                    ,String.valueOf(paramValue)
+                                                                    ,param)
+                                                                    ,path
+                                                                    ,param
+                                                                    ,paramValue);
+        
 
     }
 }
